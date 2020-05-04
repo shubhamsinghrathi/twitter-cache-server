@@ -38,7 +38,12 @@ public class InitialController {
 	
 	public void initialProcess() {
 		User user = userService.getUser(1);
-		if(user != null) return;
+		if(user != null) {
+			System.out.println("____DATA PREPARETION ALREADY DONE____");
+			return;
+		}
+		
+		System.out.println("____DATA PREPARETION IS ON GOING____");
 		
 		Map<Integer, User> userMap = new HashMap<Integer, User>();
 		
