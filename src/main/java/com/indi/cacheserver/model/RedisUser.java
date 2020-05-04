@@ -2,7 +2,7 @@ package com.indi.cacheserver.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class RedisUser implements Serializable {
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public class User implements Serializable {
 		this.salary = salary;
 	}
 	
-	public User(String id, String name, long salary) {
+	public RedisUser(String id, String name, long salary) {
 		super();
 		this.id = id;
 		this.name = name;

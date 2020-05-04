@@ -7,7 +7,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import com.indi.cacheserver.model.User;
+import com.indi.cacheserver.model.RedisUser;
 
 @Configuration
 @Component
@@ -22,8 +22,8 @@ public class ServerConfiguration {
 	}
 	
 	@Bean
-	RedisTemplate<String, User> redisTemplate() {
-		RedisTemplate<String, User> redisTemp = new RedisTemplate<>();
+	RedisTemplate<String, RedisUser> redisTemplate() {
+		RedisTemplate<String, RedisUser> redisTemp = new RedisTemplate<>();
 		redisTemp.setConnectionFactory(jedisConnectionFactory());
 		return redisTemp;
 	}

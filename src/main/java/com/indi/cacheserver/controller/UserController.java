@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.indi.cacheserver.dao.RedisUserRepositiry;
-import com.indi.cacheserver.model.User;
+import com.indi.cacheserver.model.RedisUser;
 
 @RestController
 @RequestMapping("/api/user")
@@ -24,19 +24,19 @@ public class UserController {
 	private RedisUserRepositiry redisUserRepository;
 	
 	@PostMapping
-	public ResponseEntity<String> addUser(@RequestBody User user) {
+	public ResponseEntity<String> addUser(@RequestBody RedisUser user) {
 		redisUserRepository.add(user);
 		return new ResponseEntity<String>("User added to redis", HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<User> findUser(@PathVariable String id) {
-		return new ResponseEntity<User>(redisUserRepository.findById(id), HttpStatus.OK);
+	public ResponseEntity<RedisUser> findUser(@PathVariable String id) {
+		return new ResponseEntity<RedisUser>(redisUserRepository.findById(id), HttpStatus.OK);
 	}
 	
 	@GetMapping
-	public ResponseEntity<Map<String, User>> getAllUsers() {
-		return new ResponseEntity<Map<String, User>>(redisUserRepository.findAll(), HttpStatus.OK);
+	public ResponseEntity<Map<String, RedisUser>> getAllUsers() {
+		return new ResponseEntity<Map<String, RedisUser>>(redisUserRepository.findAll(), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")

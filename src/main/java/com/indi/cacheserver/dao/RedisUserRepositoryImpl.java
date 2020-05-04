@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.indi.cacheserver.model.User;
+import com.indi.cacheserver.model.RedisUser;
 
 class RedisRepo {
 	static String User = "USER";
@@ -16,25 +16,25 @@ class RedisRepo {
 @Repository
 public class RedisUserRepositoryImpl implements RedisUserRepositiry {
 	
-	private HashOperations<String, String, User> hashOperations;
+	private HashOperations<String, String, RedisUser> hashOperations;
 	
 	@Autowired
-	public RedisUserRepositoryImpl(RedisTemplate<String, User> redisTemplate) {
+	public RedisUserRepositoryImpl(RedisTemplate<String, RedisUser> redisTemplate) {
 		hashOperations = redisTemplate.opsForHash();
 	}
 	
 	@Override 
-	public void add(User user) {
+	public void add(RedisUser user) {
 		hashOperations.put(RedisRepo.User, user.getId(), user);
 	}
 
 	@Override
-	public Map<String, User> findAll() {
+	public Map<String, RedisUser> findAll() {
 		return hashOperations.entries(RedisRepo.User);
 	}
 
 	@Override
-	public void update(User user) {
+	public void update(RedisUser user) {
 		add(user);
 	}
 
@@ -44,7 +44,7 @@ public class RedisUserRepositoryImpl implements RedisUserRepositiry {
 	}
 
 	@Override
-	public User findById(String id) {
+	public RedisUser findById(String id) {
 		return hashOperations.get(RedisRepo.User, id);
 	}
 

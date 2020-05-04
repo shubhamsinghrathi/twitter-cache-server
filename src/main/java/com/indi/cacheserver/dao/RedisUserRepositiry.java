@@ -2,18 +2,18 @@ package com.indi.cacheserver.dao;
 
 import java.util.Map;
 
-import com.indi.cacheserver.model.User;
+import com.indi.cacheserver.model.RedisUser;
 
 public interface RedisUserRepositiry {
 
-	void add(User user);
+	void add(RedisUser user);
 	
-	Map<String, User> findAll();
+	Map<String, RedisUser> findAll();
 	
-	void update(User user);
+	void update(RedisUser user);
 	
 	void delete(String id);
 	
-	User findById(String id);
+	RedisUser findById(String id);
 	
 }
