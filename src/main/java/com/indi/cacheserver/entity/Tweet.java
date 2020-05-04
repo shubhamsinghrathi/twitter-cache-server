@@ -33,10 +33,9 @@ public class Tweet {
 	@ManyToOne(cascade= {
 			CascadeType.DETACH,
 			CascadeType.MERGE,
-			CascadeType.PERSIST,
 			CascadeType.REFRESH
 	})
-	@JoinColumn(name="userId")
+	@JoinColumn(name="user_id")
 	private User user;
 
 	public int getId() {

@@ -9,9 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="followers")
+@Table(name = "followers", uniqueConstraints = { @UniqueConstraint( columnNames = { "follower_id", "following_id" } ) })
 public class Follower {
 	
 	@Id
@@ -22,7 +23,6 @@ public class Follower {
 	@ManyToOne(cascade= {
 			CascadeType.DETACH,
 			CascadeType.MERGE,
-			CascadeType.PERSIST,
 			CascadeType.REFRESH
 	})
 	@JoinColumn(name="follower_id")
@@ -31,7 +31,6 @@ public class Follower {
 	@ManyToOne(cascade= {
 			CascadeType.DETACH,
 			CascadeType.MERGE,
-			CascadeType.PERSIST,
 			CascadeType.REFRESH
 	})
 	@JoinColumn(name="following_id")

@@ -34,7 +34,6 @@ public class User {
 	@OneToMany(mappedBy = "following", cascade = {
 			CascadeType.DETACH,
 			CascadeType.MERGE,
-			CascadeType.PERSIST,
 			CascadeType.REFRESH,
 			CascadeType.REMOVE
 	}, fetch = FetchType.LAZY)
@@ -43,16 +42,18 @@ public class User {
 	@OneToMany(mappedBy = "follower", cascade = {
 			CascadeType.DETACH,
 			CascadeType.MERGE,
-			CascadeType.PERSIST,
 			CascadeType.REFRESH,
 			CascadeType.REMOVE
 	}, fetch = FetchType.LAZY)
 	private List<Follower> followings;
 	
 	@OneToMany(mappedBy = "user", cascade = {
-			CascadeType.ALL
-		}, fetch = FetchType.LAZY)
-		private List<Tweet> tweets;
+			CascadeType.DETACH,
+			CascadeType.MERGE,
+			CascadeType.REFRESH,
+			CascadeType.REMOVE
+	}, fetch = FetchType.LAZY)
+	private List<Tweet> tweets;
 	
 	public int getId() {
 		return id;

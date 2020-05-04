@@ -6,9 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.indi.cacheserver.entity.Follower;
 
+@Repository
 public class FollowerDaoImpl implements FollowerDao {
 
 	@Autowired

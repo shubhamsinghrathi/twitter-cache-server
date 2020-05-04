@@ -3,11 +3,13 @@ package com.indi.cacheserver.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.indi.cacheserver.dao.FollowerDao;
 import com.indi.cacheserver.entity.Follower;
 
+@Service
 public class FollowServiceImpl implements FollowerService {
 	
 	@Autowired
