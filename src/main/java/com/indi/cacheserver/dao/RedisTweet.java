@@ -31,6 +31,10 @@ public class RedisTweet {
 		hashOperations.put(tweetData, t.getId(), t);
 	}
 	
+	public void deleteTweet(int id) {
+		hashOperations.delete(tweetData, id);
+	}
+	
 	public TimelineTweet getTweet(int i) {
 		return hashOperations.get(tweetData, i);
 	}
@@ -41,6 +45,10 @@ public class RedisTweet {
 	
 	public void addTweetIdToList(int userId, int tweetId) {
 		listOperations.leftPush(userId, tweetId);
+	}
+	
+	public void addTweetIdsToList(int userId, List<Integer> tweetId) {
+		listOperations.leftPushAll(userId, tweetId);
 	}
 	
 	public List<Integer> getTweerIds(int userId, int pageNumber, int limit) {

@@ -36,7 +36,7 @@ public class TweetDaoImpl implements TweetDao {
 				+ " t.createdAt as createdAt, t.content as content"
 				+ " from Follower f left join User u on u.id = f.following.id"
 				+ " left join Tweet t on f.following.id = t.user.id"
-				+ " where f.follower.id=:id order by t.createdAt desc");
+				+ " where f.follower.id=:id order by t.id desc");
 		timelineQuery.setParameter("id", id);
 		
 		timelineQuery.setFirstResult((pageNumber - 1) * limit);
@@ -52,6 +52,19 @@ public class TweetDaoImpl implements TweetDao {
 			);
 		}
 		return tweets;
+	}
+
+	@Override
+	public Tweet updateTweet(Tweet tweet) {
+		Tweet t =  entityManager.merge(tweet);
+		return t;
+	}
+
+	@Override
+	public void deleteTweet(int id) {
+		Query deletePostQuery = entityManager.createQuery("delete from Tweet where id=:id");
+		deletePostQuery.setParameter("id", id);
+		deletePostQuery.executeUpdate();
 	}
 
 }

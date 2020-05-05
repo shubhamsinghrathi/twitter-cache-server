@@ -30,11 +30,11 @@ public class InitialController {
 	@Autowired
 	private RedisTweet redisTweet;
 	
-	private int totalUsers = 1000; // 1000, 10
-	private int followerStart = 51; // 51, 6
-	private int followingEnd = 50; // 50, 5
-	private int totalTweets = 100; // 100, 10
-	private int cacheEnd = 100; // 100, 10
+	private int totalUsers = 1000; // 1000, 10, 1000
+	private int followerStart = 101; // 51, 6, 101
+	private int followingEnd = 100; // 50, 5, 100
+	private int totalTweets = 1000; // 100, 10, 1000
+	private int cacheEnd = 101; // 100, 10, 101
 	
 	public void initialProcess() {
 		User user = userService.getUser(1);
@@ -53,13 +53,24 @@ public class InitialController {
 			userService.addUser(u);
 		}
 		
+		System.out.println("__USER ADDED__");
+		
 		for (int i=followerStart; i<=totalUsers; i++) {
 			for (int j=1; j<=followingEnd; j++) {
 				followerService.addFollow(new Follower(userMap.get(i), userMap.get(j)));
 			}
 		}
 		
+		System.out.println("__FOLLOWING DONE__");
+		
+		for (int k=followerStart; k<=cacheEnd; k++) {
+			redisTweet.addTweetIdToList(99991, k); // A bad hack
+		}
+		
+		System.out.println("__CACHED USER LIST ADDED__");
+		
 		for (int i=1; i<=followingEnd; i++) {
+			System.out.println("Adding tweets for user " + i + "/" + followingEnd);
 			User u = userMap.get(i);
 			
 			for (int j=1; j<=totalTweets; j++) {

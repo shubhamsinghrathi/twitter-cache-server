@@ -12,5 +12,9 @@ public interface TweetDao {
 	Tweet getTweet(int id);
 	
 	List<TimelineTweet> getTimeline(int id, int pageNumber, int limit);
+
+	Tweet updateTweet(Tweet tweet);
+
+	void deleteTweet(int tweetId);
 	
 }

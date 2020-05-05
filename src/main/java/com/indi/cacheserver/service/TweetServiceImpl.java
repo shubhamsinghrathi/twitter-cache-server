@@ -34,4 +34,16 @@ public class TweetServiceImpl implements TweetService {
 		return tweetDao.getTimeline(id, pageNumber, limit);
 	}
 
+	@Override
+	@Transactional
+	public Tweet updateTweet(Tweet tweet) {
+		return tweetDao.updateTweet(tweet);
+	}
+
+	@Override
+	@Transactional
+	public void deleteTweet(int tweetId) {
+		tweetDao.deleteTweet(tweetId);
+	}
+
 }

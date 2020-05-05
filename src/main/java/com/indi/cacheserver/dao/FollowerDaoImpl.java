@@ -24,7 +24,7 @@ public class FollowerDaoImpl implements FollowerDao {
 
 	@Override
 	public List<Follower> getFollowings(int followerId) {
-		Query followQuery = entityManager.createQuery("from Follower where followerId=:followerId", Follower.class);
+		Query followQuery = entityManager.createQuery("from Follower where follower_id=:followerId", Follower.class);
 		followQuery.setParameter("followerId", followerId);
 		@SuppressWarnings("unchecked")
 		List<Follower> followings = followQuery.getResultList();
@@ -33,7 +33,7 @@ public class FollowerDaoImpl implements FollowerDao {
 
 	@Override
 	public List<Follower> getFollowers(int followingId) {
-		Query followQuery = entityManager.createQuery("from Follower where followingId=:followingId", Follower.class);
+		Query followQuery = entityManager.createQuery("from Follower where following_id=:followingId", Follower.class);
 		followQuery.setParameter("followingId", followingId);
 		@SuppressWarnings("unchecked")
 		List<Follower> followers = followQuery.getResultList();
